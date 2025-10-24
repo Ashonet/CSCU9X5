@@ -1,5 +1,5 @@
 /* =========================================
-   Global Colours & Mode Styles
+  Global Colours & Mode Styles
 ========================================= */
 
 /* Dark Mode (default) */
@@ -23,7 +23,7 @@ html {
 }
 
 /* =========================================
- Navbar
+  Navbar
 ========================================= */
 
 body.dark-mode .navbar {
@@ -57,7 +57,7 @@ body.dark-mode .navbar .nav-link:hover {
 }
 
 /* =========================================
- Footer
+  Footer
 ========================================= */
 
 footer {
@@ -76,7 +76,7 @@ body.light-mode footer {
 }
 
 /* =========================================
- Hero Section with Video
+  Hero Section with Video
 ========================================= */
 
 .hero {
@@ -115,7 +115,7 @@ body.light-mode .hero-content {
 }
 
 /* =========================================
- Down Arrow for Hero Section
+  Down Arrow for Hero Section
 ========================================= */
 
 .down-arrow {
@@ -140,7 +140,7 @@ body.light-mode .hero-content {
 }
 
 /* =========================================
- Cards & Content Sections
+  Cards & Content Sections
 ========================================= */
 
 .feature-card {
@@ -174,7 +174,7 @@ body.light-mode .feature-card * {
 }
 
 /* =========================================
-Typography & Text Readability
+  Typography & Text Readability
 ========================================= */
 
 body.dark-mode h1,
@@ -210,7 +210,7 @@ p {
 }
 
 /* =========================================
- Toggle Button
+  Toggle Button
 ========================================= */
 
 .toggle-btn {
@@ -244,7 +244,7 @@ body.light-mode #modeToggle:hover {
 }
 
 /* =========================================
-   Dark-mode fixes for Bootstrap components
+  Dark-mode fixes for Bootstrap components
 ========================================= */
 
 /* Accordion (Safety page) */
@@ -284,3 +284,124 @@ body.dark-mode .alert-warning {
   color: #ffe08a;
   border-color: rgba(255,193,7,0.35);
 }
+
+/* =========================================
+  Quiz Tabs
+========================================= */
+
+.quiz-tabs .nav-link {
+  color: inherit;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: background-color .2s ease, color .2s ease;
+}
+
+/* Active tab — Light mode */
+body.light-mode .quiz-tabs .nav-link.active {
+  background-color: #1b7a45;
+  color: #fff !important;
+}
+
+/* Active tab — Dark mode */
+body.dark-mode .quiz-tabs .nav-link.active {
+  background-color: #2ecc71; 
+  color: #1a1a1a !important;
+}
+
+.quiz-tabs .nav-link:hover { opacity: 0.9; }
+
+
+/* =========================================
+  Map components
+========================================= */
+
+/* Leaflet legend theming */
+.legend {
+  padding: 8px 10px;
+  border-radius: 8px;
+  line-height: 1.3;
+  font-size: 0.9rem;
+  max-width: 260px;
+  max-height: 40vh;
+  overflow-y: auto;
+}
+
+/* Light theme */
+body.light-mode .legend {
+  background: rgba(255,255,255,0.92);
+  color: #1c1c1c;
+  border: 1px solid rgba(0,0,0,0.15);
+}
+
+/* Dark theme */
+body.dark-mode .legend {
+  background: rgba(28,28,28,0.92);
+  color: #f5f5f5;
+  border: 1px solid rgba(255,255,255,0.18);
+}
+
+.legend .row { display:flex; align-items:center; margin-bottom:4px; }
+.legend .swatch {
+  width:14px; height:14px; border-radius:3px; margin-right:6px; display:inline-block;
+  border:1px solid rgba(0,0,0,0.35);
+}
+body.dark-mode .legend .swatch { border-color: rgba(255,255,255,0.35); }
+
+/* Map: Category toggle (Edible / Poisonous) */
+.cat-panel{
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  max-width: 220px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.25);
+  backdrop-filter: blur(4px);
+}
+
+/* Light / Dark skins */
+body.light-mode .cat-panel{
+  background: rgba(255,255,255,0.92);
+  color: #1c1c1c;
+  border: 1px solid rgba(0,0,0,0.15);
+}
+body.dark-mode .cat-panel{
+  background: rgba(28,28,28,0.92);
+  color: #f5f5f5;
+  border: 1px solid rgba(255,255,255,0.18);
+}
+
+/* Title aligns with checkbox rows */
+.cat-panel .title{
+  font-weight: 900;
+  margin: 0 0 8px 0;
+  text-align: left;
+  /* slight nudge so it visually lines up with the checkbox edge */
+  padding-left: 2px;
+}
+
+/* This fixes Bootstrap’s default .form-check layout so flex works */
+.cat-panel .form-check{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+  padding-left: 0;              /* <— override Bootstrap */
+}
+.cat-panel .form-check-input{
+  position: static;             /* <— override Bootstrap absolute position */
+  margin: 0;                    /* <— override Bootstrap */
+  flex-shrink: 0;
+  width: 0.95rem;
+  height: 0.95rem;
+  cursor: pointer;
+}
+.cat-panel .form-check-label{
+  margin: 0;                    /* <— override Bootstrap */
+  font-size: 0.82rem;           
+  line-height: 1.1;
+}
+
+/* Checkbox accent colours by theme */
+body.light-mode .cat-panel .form-check-input{ accent-color: #198754; }
+body.dark-mode  .cat-panel .form-check-input{ accent-color: #ffc107; }
+

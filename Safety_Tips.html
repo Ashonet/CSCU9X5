@@ -143,7 +143,7 @@
 
       <div class="col-lg-5">
         <div class="card feature-card h-100">
-          <img src="https://images.unsplash.com/photo-1508433957232-3107f1a5d81b?auto=format&fit=crop&w=1200&q=60" class="card-img-top" alt="Fly agaric in woodland">
+          <img src="Photos/Mushrooms/Poisonous/Fly Agaric.jpg" class="card-img-top" alt="Fly agaric in woodland">
           <div class="card-body">
             <h5 class="card-title">Know the features</h5>
             <p class="mb-0">
@@ -218,37 +218,8 @@
     &copy; 2025 Interactive Mushroom Foraging Guide UK. All rights reserved.
   </footer>
 
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    const toggleBtn = document.getElementById('modeToggle');
-  
-    // Apply saved theme on load
-    (function () {
-      try {
-        const saved = localStorage.getItem('theme'); // 'dark' | 'light' | null
-        if (saved === 'light') {
-          document.body.classList.remove('dark-mode');
-          document.body.classList.add('light-mode');
-          toggleBtn.textContent = 'Dark Mode';
-        } else {
-          // default dark
-          toggleBtn.textContent = 'Light Mode';
-        }
-      } catch (e) {}
-    })();
-  
-    // Existing toggle + persist
-    toggleBtn.addEventListener('click', () => {
-      if (document.body.classList.contains('dark-mode')) {
-        document.body.classList.replace('dark-mode', 'light-mode');
-        toggleBtn.textContent = 'Dark Mode';
-        localStorage.setItem('theme', 'light');   // <-- persist
-      } else {
-        document.body.classList.replace('light-mode', 'dark-mode');
-        toggleBtn.textContent = 'Light Mode';
-        localStorage.setItem('theme', 'dark');    // <-- persist
-      }
-    });
-  </script>  
+  <script src="js/theme.js"></script>
 </body>
 </html>

@@ -8,62 +8,26 @@
   <link rel="stylesheet" href="style.css"/>
 
   <style>
-    /* BuzzFeed-ish cards */
-    .bf-card {
-      border-radius: 18px;
-      overflow: hidden;
-      border: none;
-      box-shadow: 0 8px 24px rgba(0,0,0,.25);
-    }
-    .bf-hero {
-      position: relative;
-      height: 220px;
-      background: #222 center/cover no-repeat;
-    }
-    .bf-hero .label {
-      position: absolute;
-      left: 12px; bottom: 12px;
-      background: rgba(0,0,0,.55);
-      color: #fff;
-      padding: 8px 12px;
-      border-radius: 10px;
-      font-weight: 700;
-      backdrop-filter: blur(2px);
-    }
-    .bf-body { padding: 16px; }
-    .bf-choice {
-      display: block;
-      width: 100%;
-      text-align: left;
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 2px solid transparent;
-      transition: transform .08s ease, border-color .2s ease, background .2s ease;
-      margin-bottom: .6rem;
-    }
-    .bf-choice:hover { transform: translateY(-1px); }
-    .bf-choice input { display: none; }
-    .bf-choice .text { font-weight: 600; }
-    .bf-choice.edible { background: rgba(25,135,84,.15); }           /* green-ish */
-    .bf-choice.poison { background: rgba(220,53,69,.15); }          /* red-ish */
-    .bf-choice.opt { background: rgba(255,255,255,.08); }           /* generic */
-    .bf-choice.selected { border-color: #ffc107; background: rgba(255,193,7,.18); }
-    .bf-footer { padding: 12px 16px; border-top: 1px solid rgba(0,0,0,.08); }
-
-    .quiz-actions { gap: 8px; }
-    .scoreline { font-weight: 700; }
-
-    /* Dark mode niceties when not using your .feature-card */
-    body.dark-mode .bf-card, body.dark-mode .bf-body, body.dark-mode .bf-footer {
-      background: #1e1e1e; color: #f5f5f5;
-    }
-    body.light-mode .bf-card { background: #fff; }
-    .section-title { font-weight: 800; }
-
-    @media (min-width: 992px) {
-      .question-col { display: flex; }
-      .question-col .bf-card { width: 100%; }
-    }
+    /* BuzzFeed-ish cards (kept here; move to CSS later if you want) */
+    .bf-card{border-radius:18px;overflow:hidden;border:none;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+    .bf-hero{position:relative;height:220px;background:#222 center/cover no-repeat}
+    .bf-hero .label{position:absolute;left:12px;bottom:12px;background:rgba(0,0,0,.55);color:#fff;padding:8px 12px;border-radius:10px;font-weight:700;backdrop-filter:blur(2px)}
+    .bf-body{padding:16px}
+    .bf-choice{display:block;width:100%;text-align:left;padding:10px 12px;border-radius:12px;border:2px solid transparent;transition:transform .08s ease,border-color .2s ease,background .2s ease;margin-bottom:.6rem}
+    .bf-choice:hover{transform:translateY(-1px)}
+    .bf-choice input{display:none}
+    .bf-choice .text{font-weight:600}
+    .bf-choice.edible{background:rgba(25,135,84,.15)}
+    .bf-choice.poison{background:rgba(220,53,69,.15)}
+    .bf-choice.opt{background:rgba(255,255,255,.08)}
+    .bf-choice.selected{border-color:#ffc107;background:rgba(255,193,7,.18)}
+    .bf-footer{padding:12px 16px;border-top:1px solid rgba(0,0,0,.08)}
+    .quiz-actions{gap:8px}
+    .scoreline{font-weight:700}
+    body.dark-mode .bf-card,body.dark-mode .bf-body,body.dark-mode .bf-footer{background:#1e1e1e;color:#f5f5f5}
+    body.light-mode .bf-card{background:#fff}
+    .section-title{font-weight:800}
+    @media (min-width: 992px){.question-col{display:flex}.question-col .bf-card{width:100%}}
   </style>
 </head>
 <body class="dark-mode">
@@ -93,50 +57,80 @@
   <section class="container py-5">
     <h2 class="mb-2">Interactive Quiz</h2>
     <p class="mb-4">
-      Each section is its own quiz. Pick answers, then grade that section. Mushrooms match the Identification Guide.
+      Choose a quiz tab below. Mushrooms match your Identification Guide.
     </p>
 
-    <!-- Section 1 -->
-    <div class="mb-5">
-      <h3 class="section-title mb-3">1) Edible or Poisonous?</h3>
-      <div id="sec-ed" class="row g-4"></div>
-      <div class="d-flex quiz-actions mt-3">
-        <button id="grade-ed" class="btn btn-success">Grade Section 1</button>
-        <button id="reset-ed" class="btn btn-outline-secondary">Reset Section 1</button>
-        <div id="score-ed" class="ms-auto scoreline"></div>
-      </div>
-    </div>
+    <!-- Quiz selector (tabs) -->
+    <ul class="nav nav-pills quiz-tabs mb-4" id="quizTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="tab-edible-tab" data-bs-toggle="tab"
+                data-bs-target="#tab-edible" type="button" role="tab">
+          Quiz 1 | Edible vs Poisonous
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="tab-cook-tab" data-bs-toggle="tab"
+                data-bs-target="#tab-cook" type="button" role="tab">
+          Quiz 2 | Best Cooking Method
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="tab-habitat-tab" data-bs-toggle="tab"
+                data-bs-target="#tab-habitat" type="button" role="tab">
+          Quiz 3 | Habitat
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="tab-feature-tab" data-bs-toggle="tab"
+                data-bs-target="#tab-feature" type="button" role="tab">
+          Quiz 4 | Key Feature
+        </button>
+      </li>
+    </ul>
 
-    <!-- Section 2 -->
-    <div class="mb-5">
-      <h3 class="section-title mb-3">2) Best Way to Cook (Edibles)</h3>
-      <div id="sec-cook" class="row g-4"></div>
-      <div class="d-flex quiz-actions mt-3">
-        <button id="grade-cook" class="btn btn-success">Grade Section 2</button>
-        <button id="reset-cook" class="btn btn-outline-secondary">Reset Section 2</button>
-        <div id="score-cook" class="ms-auto scoreline"></div>
+    <div class="tab-content" id="quizTabsContent">
+      <!-- Quiz 1 -->
+      <div class="tab-pane fade show active" id="tab-edible" role="tabpanel" aria-labelledby="tab-edible-tab">
+        <h3 class="section-title mb-3">1) Edible or Poisonous?</h3>
+        <div id="sec-ed" class="row g-4"></div>
+        <div class="d-flex quiz-actions mt-3">
+          <button id="grade-ed" class="btn btn-success">Grade Section 1</button>
+          <button id="reset-ed" class="btn btn-outline-secondary">Reset Section 1</button>
+          <div id="score-ed" class="ms-auto scoreline"></div>
+        </div>
       </div>
-    </div>
 
-    <!-- Section 3 -->
-    <div class="mb-5">
-      <h3 class="section-title mb-3">3) Where Are They Found?</h3>
-      <div id="sec-hab" class="row g-4"></div>
-      <div class="d-flex quiz-actions mt-3">
-        <button id="grade-hab" class="btn btn-success">Grade Section 3</button>
-        <button id="reset-hab" class="btn btn-outline-secondary">Reset Section 3</button>
-        <div id="score-hab" class="ms-auto scoreline"></div>
+      <!-- Quiz 2 -->
+      <div class="tab-pane fade" id="tab-cook" role="tabpanel" aria-labelledby="tab-cook-tab">
+        <h3 class="section-title mb-3">2) Best Way to Cook (Edibles)</h3>
+        <div id="sec-cook" class="row g-4"></div>
+        <div class="d-flex quiz-actions mt-3">
+          <button id="grade-cook" class="btn btn-success">Grade Section 2</button>
+          <button id="reset-cook" class="btn btn-outline-secondary">Reset Section 2</button>
+          <div id="score-cook" class="ms-auto scoreline"></div>
+        </div>
       </div>
-    </div>
 
-    <!-- Section 4 -->
-    <div class="mb-2">
-      <h3 class="section-title mb-3">4) Key Identification Feature</h3>
-      <div id="sec-feat" class="row g-4"></div>
-      <div class="d-flex quiz-actions mt-3">
-        <button id="grade-feat" class="btn btn-success">Grade Section 4</button>
-        <button id="reset-feat" class="btn btn-outline-secondary">Reset Section 4</button>
-        <div id="score-feat" class="ms-auto scoreline"></div>
+      <!-- Quiz 3 -->
+      <div class="tab-pane fade" id="tab-habitat" role="tabpanel" aria-labelledby="tab-habitat-tab">
+        <h3 class="section-title mb-3">3) Where Are They Found?</h3>
+        <div id="sec-hab" class="row g-4"></div>
+        <div class="d-flex quiz-actions mt-3">
+          <button id="grade-hab" class="btn btn-success">Grade Section 3</button>
+          <button id="reset-hab" class="btn btn-outline-secondary">Reset Section 3</button>
+          <div id="score-hab" class="ms-auto scoreline"></div>
+        </div>
+      </div>
+
+      <!-- Quiz 4 -->
+      <div class="tab-pane fade" id="tab-feature" role="tabpanel" aria-labelledby="tab-feature-tab">
+        <h3 class="section-title mb-3">4) Key Identification Feature</h3>
+        <div id="sec-feat" class="row g-4"></div>
+        <div class="d-flex quiz-actions mt-3">
+          <button id="grade-feat" class="btn btn-success">Grade Section 4</button>
+          <button id="reset-feat" class="btn btn-outline-secondary">Reset Section 4</button>
+          <div id="score-feat" class="ms-auto scoreline"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -145,316 +139,14 @@
     &copy; 2025 Interactive Mushroom Foraging Guide UK. All rights reserved.
   </footer>
 
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Theme persistence -->
-  <script>
-    const toggleBtn = document.getElementById('modeToggle');
-    (function () {
-      try {
-        const saved = localStorage.getItem('theme');
-        if (saved === 'light') {
-          document.body.classList.remove('dark-mode');
-          document.body.classList.add('light-mode');
-          toggleBtn.textContent = 'Dark Mode';
-        } else {
-          toggleBtn.textContent = 'Light Mode';
-        }
-      } catch (e) {}
-    })();
-    toggleBtn.addEventListener('click', () => {
-      if (document.body.classList.contains('dark-mode')) {
-        document.body.classList.replace('dark-mode', 'light-mode');
-        toggleBtn.textContent = 'Dark Mode';
-        localStorage.setItem('theme', 'light');
-      } else {
-        document.body.classList.replace('light-mode', 'dark-mode');
-        toggleBtn.textContent = 'Light Mode';
-        localStorage.setItem('theme', 'dark');
-      }
-    });
-  </script>
-
-  <!-- QUIZ DATA + LOGIC -->
-  <script>
-    // Same 20 mushrooms as the Identification Guide (with images)
-    const DB = [
-      // Edible (10)
-      { name:"Chanterelle", latin:"Cantharellus cibarius", edible:true,
-        found:"Deciduous & coniferous woods; mossy banks; summer–autumn.",
-        feature:"Wavy cap with false gills (ridges), fruity apricot scent.",
-        cook:"Lightly sauté in butter; avoid overcooking.",
-        img:"https://images.unsplash.com/photo-1590089203955-53c1890409c5?auto=format&fit=crop&w=1200&q=60" },
-      { name:"Porcini", latin:"Boletus edulis", edible:true,
-        found:"With spruce, pine, birch, beech; late summer–autumn.",
-        feature:"Bolete with pores (not gills); thick white stipe with netting.",
-        cook:"Slice and pan-sear; great in risotto/pastas.",
-        img:"https://images.unsplash.com/photo-1605881887838-10cbe26e72e6?auto=format&fit=crop&w=1200&q=60" },
-      { name:"Hedgehog Mushroom", latin:"Hydnum repandum", edible:true,
-        found:"Deciduous & conifer woods; late summer–autumn.",
-        feature:"Teeth/spines under the cap instead of gills.",
-        cook:"Sauté; lovely in cream/garlic sauces.",
-        img:"https://images.unsplash.com/photo-1603131217924-9a6a2c1f24ef?auto=format&fit=crop&w=1200&q=60" },
-      { name:"Oyster Mushroom", latin:"Pleurotus ostreatus", edible:true,
-        found:"On dead hardwood; parks & woodlands; autumn–winter.",
-        feature:"Fan-shaped shelves with decurrent gills.",
-        cook:"Quick stir-fry/sauté; good in noodles or tacos.",
-        img:"https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?auto=format&fit=crop&w=1200&q=60" },
-      { name:"Chicken of the Woods", latin:"Laetiporus sulphureus", edible:true,
-        found:"On oak, yew, cherry; late spring–autumn.",
-        feature:"Bright sulphur-yellow/orange shelves; meaty texture.",
-        cook:"Cut young pieces; pan-fry like chicken or use in curries.",
-        img:"https://images.unsplash.com/photo-1603386826421-90e487c0d1f5?auto=format&fit=crop&w=1200&q=60" },
-      { name:"Wood Blewit", latin:"Lepista nuda", edible:true,
-        found:"Leaf litter, compost, edges; autumn–winter.",
-        feature:"Lilac tones on cap/gills when fresh.",
-        cook:"Must be cooked thoroughly; simple sauté.",
-        img:"https://images.unsplash.com/photo-1631979925152-2e537454b6d7?auto=format&fit=crop&w=1200&q=60" },
-      { name:"Field Mushroom", latin:"Agaricus campestris", edible:true,
-        found:"Pasture & lawns; late summer–autumn.",
-        feature:"Pink gills maturing chocolate-brown; ring present; no volva.",
-        cook:"Sauté or grill; classic breakfast mushroom.",
-        img:"https://images.unsplash.com/photo-1502741126161-b048400d0857?auto=format&fit=crop&w=1200&q=60" },
-      { name:"St George’s Mushroom", latin:"Calocybe gambosa", edible:true,
-        found:"Grassy places, hedgerows; spring.",
-        feature:"Thick, creamy cap; mealy (cucumber) smell; spring fruiter.",
-        cook:"Sauté; great in creamy sauces/omelettes.",
-        img:"https://images.unsplash.com/photo-1626178797720-0a98fc2a82b2?auto=format&fit=crop&w=1200&q=60" },
-      { name:"Fairy Ring Champignon", latin:"Marasmius oreades", edible:true,
-        found:"Lawns, meadows; forms rings; spring–autumn.",
-        feature:"Widely spaced gills; tough wiry stem; small buff caps.",
-        cook:"Best sautéed or dried for stock.",
-        img:"https://images.unsplash.com/photo-1611955167818-9a4f75b1218f?auto=format&fit=crop&w=1200&q=60" },
-      { name:"Giant Puffball", latin:"Calvatia gigantea", edible:true,
-        found:"Pasture, field edges; late summer–autumn.",
-        feature:"Huge white ball; pure white interior when edible.",
-        cook:"Slice thick slabs; pan-fry in butter/egg and breadcrumb.",
-        img:"https://images.unsplash.com/photo-1595943027138-7977b7a7fd1a?auto=format&fit=crop&w=1200&q=60" },
-
-      // Poisonous (10)
-      { name:"Death Cap", latin:"Amanita phalloides", edible:false,
-        found:"With oak, beech; summer–autumn; parks/woods.",
-        feature:"Olive cap; white gills; ring + white volva at bulbous base.",
-        img:"https://images.unsplash.com/photo-1630931502970-7ad7d8b91b9e?auto=format&fit=crop&w=1200&q=60" },
-      { name:"Destroying Angel", latin:"Amanita virosa", edible:false,
-        found:"Conifer/birch woods; summer–autumn.",
-        feature:"All white; ring and volva present; deadly amatoxins.",
-        img:"https://images.unsplash.com/photo-1606851091845-079f8f223603?auto=format&fit=crop&w=1200&q=60" },
-      { name:"Fly Agaric", latin:"Amanita muscaria", edible:false,
-        found:"Birch & pine; late summer–autumn.",
-        feature:"Red cap with white warts; ring + volva; toxic.",
-        img:"https://images.unsplash.com/photo-1508433957232-3107f1a5d81b?auto=format&fit=crop&w=1200&q=60" },
-      { name:"Panther Cap", latin:"Amanita pantherina", edible:false,
-        found:"Mixed woods; summer–autumn.",
-        feature:"Brown cap with neat white warts; ring + volva; toxic.",
-        img:"https://images.unsplash.com/photo-1599571424776-1500f0b2b44c?auto=format&fit=crop&w=1200&q=60" },
-      { name:"Funeral Bell (Deadly Galerina)", latin:"Galerina marginata", edible:false,
-        found:"On rotting wood; year-round clumps.",
-        feature:"Small brown caps; rusty gills; sometimes a ring; deadly amatoxins.",
-        img:"https://images.unsplash.com/photo-1607443870137-51f1f90c962f?auto=format&fit=crop&w=1200&q=60" },
-      { name:"Fool’s Funnel", latin:"Clitocybe rivulosa", edible:false,
-        found:"Lawns, parks, dunes; summer–winter.",
-        feature:"Whitish funnel cap; decurrent crowded gills; muscarine.",
-        img:"https://images.unsplash.com/photo-1593986906221-d6d0b23b7b2d?auto=format&fit=crop&w=1200&q=60" },
-      { name:"Deadly Webcap", latin:"Cortinarius rubellus", edible:false,
-        found:"Conifers, heaths; late summer–autumn.",
-        feature:"Rusty-orange cap; cobwebby cortina; orellanine toxin.",
-        img:"https://images.unsplash.com/photo-1601999134656-4f53d2e5f9d4?auto=format&fit=crop&w=1200&q=60" },
-      { name:"Deadly Fibrecap", latin:"Inosperma erubescens", edible:false,
-        found:"Calcareous woods, parks; summer–autumn.",
-        feature:"Pale cap reddening when bruised; fibrillose stem; muscarine.",
-        img:"https://images.unsplash.com/photo-1604878394223-01c87d2f1bf7?auto=format&fit=crop&w=1200&q=60" },
-      { name:"Sulphur Tuft", latin:"Hypholoma fasciculare", edible:false,
-        found:"On stumps/logs in dense clusters; most of the year.",
-        feature:"Sulphur-yellow caps; darker centres; greenish gills with age.",
-        img:"https://images.unsplash.com/photo-1630600033239-9e88d885f4d3?auto=format&fit=crop&w=1200&q=60" },
-      { name:"Yellow Stainer", latin:"Agaricus xanthodermus", edible:false,
-        found:"Parks, gardens; summer–autumn.",
-        feature:"Base bruises chrome-yellow; phenolic/ink smell; GI upset.",
-        img:"https://images.unsplash.com/photo-1519680772-8b3d9a96946b?auto=format&fit=crop&w=1200&q=60" }
-    ];
-
-    // Utilities
-    const shuffle = arr => arr.map(v=>[Math.random(),v]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]);
-    const pickN = (arr,n) => shuffle(arr.slice()).slice(0,n);
-    const htmlEsc = s => String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-
-    // Render helpers
-    function questionCard({img, title, subtitle, choices, name}) {
-      return `
-        <div class="col-lg-6 question-col">
-          <div class="bf-card w-100">
-            <div class="bf-hero" style="background-image:url('${img}')">
-              <div class="label">${htmlEsc(title)}<br><small>${htmlEsc(subtitle||'')}</small></div>
-            </div>
-            <div class="bf-body">
-              ${choices.map(c => `
-                <label class="bf-choice ${c.cls||'opt'}">
-                  <input type="radio" name="${name}" value="${htmlEsc(c.value)}">
-                  <span class="text">${htmlEsc(c.label)}</span>
-                </label>
-              `).join('')}
-            </div>
-            <div class="bf-footer">
-              <div class="small text-muted" id="${name}-explain"></div>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    // ---------------- Section 1: Edible vs Poisonous (10) ----------------
-    const ediblesSec = document.getElementById('sec-ed');
-    const edSet = pickN(DB, 10);
-    edSet.forEach((m, i) => {
-      const name = `ed-${i}`;
-      const choices = [
-        { label: "Edible 🍽️", value: "edible", cls:"edible" },
-        { label: "Poisonous ☠️", value: "poisonous", cls:"poison" }
-      ];
-      ediblesSec.insertAdjacentHTML('beforeend', questionCard({
-        img: m.img,
-        title: m.name, subtitle: m.latin,
-        name, choices
-      }));
-    });
-
-    document.getElementById('grade-ed').addEventListener('click', () => {
-      let total = 0, correct = 0;
-      edSet.forEach((m,i)=>{
-        total++;
-        const name = `ed-${i}`;
-        const chosen = (document.querySelector(`input[name="${name}"]:checked`)||{}).value;
-        const ok = m.edible ? "edible" : "poisonous";
-        const exp = document.getElementById(`${name}-explain`);
-        if (chosen === ok) {
-          correct++; exp.innerHTML = `<span class="text-success fw-bold">Correct!</span> ${m.feature}`;
-        } else {
-          exp.innerHTML = `<span class="text-danger fw-bold">Wrong.</span> It is <strong>${ok}</strong>. ${m.feature}`;
-        }
-        // mark selected visually
-        document.querySelectorAll(`input[name="${name}"]`).forEach(inp=>{
-          inp.closest('.bf-choice')?.classList.toggle('selected', inp.checked);
-        });
-      });
-      document.getElementById('score-ed').textContent = `Score: ${correct}/${total} (${Math.round(correct/total*100)}%)`;
-    });
-    document.getElementById('reset-ed').addEventListener('click', ()=>location.reload());
-
-    // ---------------- Section 2: Cooking (5 edibles) ----------------
-    const cookSec = document.getElementById('sec-cook');
-    const cookPool = DB.filter(x=>x.edible);
-    const cookSet = pickN(cookPool, 5);
-    const cookDistractors = [
-      "Roast whole at high heat",
-      "Pickle raw slices",
-      "Best dried then rehydrated",
-      "Deep fry in batter",
-      "Slow-braise for 2 hours",
-      "Microwave on high for 6 minutes"
-    ];
-    cookSet.forEach((m,i)=>{
-      const name = `cook-${i}`;
-      const opts = new Set([m.cook]);
-      while (opts.size < 4) {
-        const c = cookDistractors[Math.floor(Math.random()*cookDistractors.length)];
-        opts.add(c);
-      }
-      const choices = shuffle([...opts]).map(t=>({ label:t, value:t, cls:"opt"}));
-      cookSec.insertAdjacentHTML('beforeend', questionCard({
-        img: m.img,
-        title: `Best way to cook ${m.name}?`,
-        subtitle: m.latin,
-        name, choices
-      }));
-    });
-
-    document.getElementById('grade-cook').addEventListener('click', () => {
-      let total = 0, correct = 0;
-      cookSet.forEach((m,i)=>{
-        total++;
-        const name = `cook-${i}`;
-        const chosen = (document.querySelector(`input[name="${name}"]:checked`)||{}).value;
-        const ok = m.cook;
-        const exp = document.getElementById(`${name}-explain`);
-        if (chosen === ok) { correct++; exp.innerHTML = `<span class="text-success fw-bold">Nice!</span>`; }
-        else { exp.innerHTML = `<span class="text-danger fw-bold">Not quite.</span> Best: ${ok}`; }
-        document.querySelectorAll(`input[name="${name}"]`).forEach(inp=>{
-          inp.closest('.bf-choice')?.classList.toggle('selected', inp.checked);
-        });
-      });
-      document.getElementById('score-cook').textContent = `Score: ${correct}/${total} (${Math.round(correct/total*100)}%)`;
-    });
-    document.getElementById('reset-cook').addEventListener('click', ()=>location.reload());
-
-    // ---------------- Section 3: Habitat (5) ----------------
-    const habSec = document.getElementById('sec-hab');
-    const habSet = pickN(DB, 5);
-    habSet.forEach((m,i)=>{
-      const name = `hab-${i}`;
-      const distractors = pickN(DB.filter(x=>x!==m).map(x=>x.found), 3);
-      const choices = shuffle([m.found, ...distractors]).map(t=>({label:t, value:t, cls:"opt"}));
-      habSec.insertAdjacentHTML('beforeend', questionCard({
-        img: m.img, title:`Where is ${m.name} typically found?`, subtitle:m.latin, name, choices
-      }));
-    });
-
-    document.getElementById('grade-hab').addEventListener('click', ()=>{
-      let total = 0, correct = 0;
-      habSet.forEach((m,i)=>{
-        total++;
-        const name = `hab-${i}`;
-        const chosen = (document.querySelector(`input[name="${name}"]:checked`)||{}).value;
-        const ok = m.found;
-        const exp = document.getElementById(`${name}-explain`);
-        if (chosen === ok) { correct++; exp.innerHTML = `<span class="text-success fw-bold">Correct!</span>`; }
-        else { exp.innerHTML = `<span class="text-danger fw-bold">Wrong.</span> Typical: ${ok}`; }
-        document.querySelectorAll(`input[name="${name}"]`).forEach(inp=>{
-          inp.closest('.bf-choice')?.classList.toggle('selected', inp.checked);
-        });
-      });
-      document.getElementById('score-hab').textContent = `Score: ${correct}/${total} (${Math.round(correct/total*100)}%)`;
-    });
-    document.getElementById('reset-hab').addEventListener('click', ()=>location.reload());
-
-    // ---------------- Section 4: Key Feature (5) ----------------
-    const featSec = document.getElementById('sec-feat');
-    const featSet = pickN(DB, 5);
-    featSet.forEach((m,i)=>{
-      const name = `feat-${i}`;
-      const distractors = pickN(DB.filter(x=>x!==m).map(x=>x.feature), 3);
-      const choices = shuffle([m.feature, ...distractors]).map(t=>({label:t, value:t, cls:"opt"}));
-      featSec.insertAdjacentHTML('beforeend', questionCard({
-        img: m.img, title:`Which key feature fits ${m.name}?`, subtitle:m.latin, name, choices
-      }));
-    });
-
-    document.getElementById('grade-feat').addEventListener('click', ()=>{
-      let total = 0, correct = 0;
-      featSet.forEach((m,i)=>{
-        total++;
-        const name = `feat-${i}`;
-        const chosen = (document.querySelector(`input[name="${name}"]:checked`)||{}).value;
-        const ok = m.feature;
-        const exp = document.getElementById(`${name}-explain`);
-        if (chosen === ok) { correct++; exp.innerHTML = `<span class="text-success fw-bold">Correct!</span>`; }
-        else { exp.innerHTML = `<span class="text-danger fw-bold">Wrong.</span> ${ok}`; }
-        document.querySelectorAll(`input[name="${name}"]`).forEach(inp=>{
-          inp.closest('.bf-choice')?.classList.toggle('selected', inp.checked);
-        });
-      });
-      document.getElementById('score-feat').textContent = `Score: ${correct}/${total} (${Math.round(correct/total*100)}%)`;
-    });
-    document.getElementById('reset-feat').addEventListener('click', ()=>location.reload());
-
-    // Click styling for options
-    document.addEventListener('change', (e)=>{
-      const inp = e.target.closest('input[type="radio"]');
-      if (!inp) return;
-      document.querySelectorAll(`input[name="${inp.name}"]`).forEach(el=>{
-        el.closest('.bf-choice')?.classList.toggle('selected', el.checked);
-      });
-    });
-  </script>
+  <!-- Shared theme (persists dark/light and updates the button) -->
+  <script src="js/theme.js" defer></script>
+  <!-- Shared mushroom data (same 20 used in guide + quiz) -->
+  <script src="js/mushrooms.js" defer></script>
+  <!-- Quiz logic (renders into #sec-*) -->
+  <script src="js/quiz.js" defer></script>
 </body>
 </html>
