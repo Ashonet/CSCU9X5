@@ -130,7 +130,7 @@ body.light-mode .hero-content {
 
 .down-arrow:hover {
   transform: translateY(5px);
-  color: #ffc107 !important; /* force orange hover */
+  color: #ffc107 !important;
   cursor: pointer;
 }
 
@@ -199,7 +199,6 @@ body.light-mode li {
   color: #1c1c1c !important;
 }
 
-/* Better text spacing */
 h1, h2, h3 {
   font-weight: 700;
   margin-bottom: 0.75rem;
@@ -247,7 +246,6 @@ body.light-mode #modeToggle:hover {
   Dark-mode fixes for Bootstrap components
 ========================================= */
 
-/* Accordion (Safety page) */
 body.dark-mode .accordion-item,
 body.dark-mode .accordion-body {
   background-color: #1e1e1e;
@@ -263,22 +261,19 @@ body.dark-mode .accordion-button {
 body.dark-mode .accordion-button:not(.collapsed) {
   background-color: #2a2a2a;
   color: #f5f5f5;
-  box-shadow: none; /* remove bright focus glow */
+  box-shadow: none;
   border-bottom-color: rgba(255,255,255,0.15);
 }
-/* Make the chevron visible on dark */
 body.dark-mode .accordion-button::after {
   filter: invert(1) brightness(1.2);
 }
 
-/* List group (Quick Checklist) */
 body.dark-mode .list-group-item {
   background-color: #1f1f1f;
   color: #f5f5f5 !important;
   border-color: rgba(255,255,255,0.15);
 }
 
-/* Alert warning (less blinding on dark) */
 body.dark-mode .alert-warning {
   background-color: rgba(255,193,7,0.15);
   color: #ffe08a;
@@ -296,13 +291,11 @@ body.dark-mode .alert-warning {
   transition: background-color .2s ease, color .2s ease;
 }
 
-/* Active tab — Light mode */
 body.light-mode .quiz-tabs .nav-link.active {
   background-color: #1b7a45;
   color: #fff !important;
 }
 
-/* Active tab — Dark mode */
 body.dark-mode .quiz-tabs .nav-link.active {
   background-color: #2ecc71; 
   color: #1a1a1a !important;
@@ -310,12 +303,10 @@ body.dark-mode .quiz-tabs .nav-link.active {
 
 .quiz-tabs .nav-link:hover { opacity: 0.9; }
 
-
 /* =========================================
   Map components
 ========================================= */
 
-/* Leaflet legend theming */
 .legend {
   padding: 8px 10px;
   border-radius: 8px;
@@ -326,14 +317,12 @@ body.dark-mode .quiz-tabs .nav-link.active {
   overflow-y: auto;
 }
 
-/* Light theme */
 body.light-mode .legend {
   background: rgba(255,255,255,0.92);
   color: #1c1c1c;
   border: 1px solid rgba(0,0,0,0.15);
 }
 
-/* Dark theme */
 body.dark-mode .legend {
   background: rgba(28,28,28,0.92);
   color: #f5f5f5;
@@ -347,7 +336,6 @@ body.dark-mode .legend {
 }
 body.dark-mode .legend .swatch { border-color: rgba(255,255,255,0.35); }
 
-/* Map: Category toggle (Edible / Poisonous) */
 .cat-panel{
   padding: 10px 14px;
   border-radius: 10px;
@@ -358,7 +346,6 @@ body.dark-mode .legend .swatch { border-color: rgba(255,255,255,0.35); }
   backdrop-filter: blur(4px);
 }
 
-/* Light / Dark skins */
 body.light-mode .cat-panel{
   background: rgba(255,255,255,0.92);
   color: #1c1c1c;
@@ -370,38 +357,80 @@ body.dark-mode .cat-panel{
   border: 1px solid rgba(255,255,255,0.18);
 }
 
-/* Title aligns with checkbox rows */
 .cat-panel .title{
   font-weight: 900;
   margin: 0 0 8px 0;
   text-align: left;
-  /* slight nudge so it visually lines up with the checkbox edge */
   padding-left: 2px;
 }
 
-/* This fixes Bootstrap’s default .form-check layout so flex works */
 .cat-panel .form-check{
   display: flex;
   align-items: center;
   gap: 8px;
   margin: 6px 0;
-  padding-left: 0;              /* <— override Bootstrap */
+  padding-left: 0;
 }
 .cat-panel .form-check-input{
-  position: static;             /* <— override Bootstrap absolute position */
-  margin: 0;                    /* <— override Bootstrap */
+  position: static;
+  margin: 0;
   flex-shrink: 0;
   width: 0.95rem;
   height: 0.95rem;
   cursor: pointer;
 }
 .cat-panel .form-check-label{
-  margin: 0;                    /* <— override Bootstrap */
+  margin: 0;
   font-size: 0.82rem;           
   line-height: 1.1;
 }
 
-/* Checkbox accent colours by theme */
 body.light-mode .cat-panel .form-check-input{ accent-color: #198754; }
 body.dark-mode  .cat-panel .form-check-input{ accent-color: #ffc107; }
 
+/* =========================================
+  Identification Guide
+========================================= */
+
+/* Identification Guide: results count color override */
+#resultsCount { transition: color .2s ease; }
+
+body.light-mode #resultsCount {
+  color: #6c757d !important;      /* muted grey in light mode */
+}
+
+body.dark-mode #resultsCount {
+  color: #f5f5f5 !important;      /* white in dark mode */
+}
+
+/* If the element still has .text-muted, force override too */
+body.dark-mode .text-muted#resultsCount {
+  color: #f5f5f5 !important;
+}
+
+/* =========================================
+  Safety Tips
+========================================= */
+
+/* Video section link styling */
+.video-source-link,
+.video-source-link:visited {
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+/* Light mode link */
+body.light-mode .video-source-link {
+  color: #198754;
+}
+
+/* Dark mode link */
+body.dark-mode .video-source-link {
+  color: #ffc107;
+}
+
+/* Hover effect */
+.video-source-link:hover {
+  text-decoration: underline;
+}
