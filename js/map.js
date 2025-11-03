@@ -242,7 +242,7 @@
   L.control.layers(null, overlayGroups, { collapsed: true }).addTo(map);
 
   // --- Legend ---
-  const legend = L.control({ position: 'bottomleft' });  // ← move to left
+  const legend = L.control({ position: 'bottomleft' });
   legend.onAdd = function () {
     const div = L.DomUtil.create('div', 'legend');
     div.innerHTML = '<strong>General Areas</strong>';
@@ -256,7 +256,6 @@
   };
   legend.addTo(map);
 
-  // your existing:
   function restyleOutlines() {
     const col = outlineColor();
     allRegionPolys.forEach(p => p.setStyle({ color: col }));

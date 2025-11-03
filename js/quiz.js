@@ -2,12 +2,12 @@
 
 const DB = (window.MUSHROOMS_DB || []).slice();
 
-// ------- utilities -------
+// --- utilities ---
 const shuffle = arr => arr.map(v=>[Math.random(),v]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]);
 const pickN = (arr,n) => shuffle(arr.slice()).slice(0,n);
 const esc = s => String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
 
-// ------- render helper -------
+// --- render helper ---
 function qCard({img, title, subtitle, choices, name}) {
   return `
     <div class="col-lg-6 question-col">
