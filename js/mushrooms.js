@@ -1,4 +1,4 @@
-// Single source of truth used by Identification Guide + Quiz + (optionally) Map popups
+// Single source of truth used by Identification Guide + Quiz
 window.MUSHROOMS_DB = [
     // ---- Edible (10) ----
     {

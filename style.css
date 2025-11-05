@@ -416,6 +416,12 @@ body.light-mode .bf-card {
   Map components
 ========================================= */
 
+#map {
+  height: 70vh;
+  border-radius: 12px;
+}
+
+/* Legend base */
 .legend {
   padding: 8px 10px;
   border-radius: 8px;
@@ -426,26 +432,38 @@ body.light-mode .bf-card {
   overflow-y: auto;
 }
 
+/* Theme skins */
 body.light-mode .legend {
   background: rgba(255,255,255,0.92);
   color: #1c1c1c;
   border: 1px solid rgba(0,0,0,0.15);
 }
-
 body.dark-mode .legend {
   background: rgba(28,28,28,0.92);
   color: #f5f5f5;
   border: 1px solid rgba(255,255,255,0.18);
 }
 
-.legend .row { display:flex; align-items:center; margin-bottom:4px; }
-.legend .swatch {
-  width:14px; height:14px; border-radius:3px; margin-right:6px; display:inline-block;
-  border:1px solid rgba(0,0,0,0.35);
+/* Legend rows + swatches */
+.legend .row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
 }
-body.dark-mode .legend .swatch { border-color: rgba(255,255,255,0.35); }
+.legend .swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  margin-right: 6px;
+  display: inline-block;
+  border: 1px solid rgba(0,0,0,0.35);
+}
+body.dark-mode .legend .swatch {
+  border-color: rgba(255,255,255,0.35);
+}
 
-.cat-panel{
+/* Category toggle */
+.cat-panel {
   padding: 10px 14px;
   border-radius: 10px;
   font-size: 0.85rem;
@@ -454,48 +472,45 @@ body.dark-mode .legend .swatch { border-color: rgba(255,255,255,0.35); }
   box-shadow: 0 6px 18px rgba(0,0,0,.25);
   backdrop-filter: blur(4px);
 }
-
-body.light-mode .cat-panel{
+body.light-mode .cat-panel {
   background: rgba(255,255,255,0.92);
   color: #1c1c1c;
   border: 1px solid rgba(0,0,0,0.15);
 }
-body.dark-mode .cat-panel{
+body.dark-mode .cat-panel {
   background: rgba(28,28,28,0.92);
   color: #f5f5f5;
   border: 1px solid rgba(255,255,255,0.18);
 }
-
-.cat-panel .title{
+.cat-panel .title {
   font-weight: 900;
   margin: 0 0 8px 0;
   text-align: left;
   padding-left: 2px;
 }
-
-.cat-panel .form-check{
+.cat-panel .form-check {
   display: flex;
   align-items: center;
   gap: 8px;
   margin: 6px 0;
-  padding-left: 0;
+  padding-left: 0; /* override Bootstrap */
 }
-.cat-panel .form-check-input{
-  position: static;
+.cat-panel .form-check-input {
+  position: static; /* override Bootstrap */
   margin: 0;
   flex-shrink: 0;
   width: 0.95rem;
   height: 0.95rem;
   cursor: pointer;
 }
-.cat-panel .form-check-label{
-  margin: 0;
-  font-size: 0.82rem;           
+.cat-panel .form-check-label {
+  margin: 0;          /* override Bootstrap */
+  font-size: 0.82rem;
   line-height: 1.1;
 }
-
-body.light-mode .cat-panel .form-check-input{ accent-color: #198754; }
-body.dark-mode  .cat-panel .form-check-input{ accent-color: #ffc107; }
+/* Checkbox accent by theme */
+body.light-mode .cat-panel .form-check-input { accent-color: #198754; }
+body.dark-mode  .cat-panel .form-check-input { accent-color: #ffc107; }
 
 /* =========================================
   Identification Guide
@@ -505,11 +520,11 @@ body.dark-mode  .cat-panel .form-check-input{ accent-color: #ffc107; }
 #resultsCount { transition: color .2s ease; }
 
 body.light-mode #resultsCount {
-  color: #6c757d !important;      /* muted grey in light mode */
+  color: #6c757d !important;
 }
 
 body.dark-mode #resultsCount {
-  color: #f5f5f5 !important;      /* white in dark mode */
+  color: #f5f5f5 !important;
 }
 
 /* If the element still has .text-muted, force override too */
