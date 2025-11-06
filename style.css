@@ -412,6 +412,17 @@ body.light-mode .bf-card {
   }
 }
 
+/* Dark mode: make quiz explanations readable */
+body.dark-mode .bf-footer .small.text-muted,
+body.dark-mode .bf-footer .text-muted {
+  color: #f5f5f5 !important;
+}
+
+/* Tweaks in top border contrast in dark */
+body.dark-mode .bf-footer {
+  border-top-color: rgba(255,255,255,.15);
+}
+
 /* =========================================
   Map components
 ========================================= */
