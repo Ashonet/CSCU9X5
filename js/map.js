@@ -262,11 +262,11 @@
   }
   restyleOutlines();
 
-  // keep tiles + outlines + legend styles synced with theme
+  // Keep tiles + outlines + legend styles synced with theme
   window.addEventListener('themechange', () => {
     setBaseByTheme();
     restyleOutlines();
-    // legend box restyles automatically via CSS because body class changes
+    // Legend box restyles automatically via CSS because body class changes
   });
 
 

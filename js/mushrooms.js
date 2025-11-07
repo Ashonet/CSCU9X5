@@ -1,6 +1,6 @@
 // Single source of truth used by Identification Guide + Quiz
 window.MUSHROOMS_DB = [
-    // ---- Edible (10) ----
+    // --- Edible (10) ---
     {
       name: "Chanterelle",
       latin: "Cantharellus cibarius",
@@ -122,7 +122,7 @@ window.MUSHROOMS_DB = [
       cook: "Slice thick slabs; pan-fry in butter/egg and breadcrumb."
     },
   
-    // ---- Poisonous (10) ----
+    // --- Poisonous (10) ---
     {
       name: "Death Cap",
       latin: "Amanita phalloides",
